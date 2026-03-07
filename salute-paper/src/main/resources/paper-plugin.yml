@@ -1,0 +1,13 @@
+api-version: "1.21"
+name: Salute
+version: ${version}
+main: codes.viremox.salute.paper.SalutePaperPlugin
+authors:
+  - viremox
+folia-supported: true
+dependencies:
+  server:
+    MiniPlaceholders:
+      load: OMIT
+      required: false
+      join-classpath: true

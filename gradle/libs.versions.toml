@@ -1,0 +1,30 @@
+[versions]
+java = "21"
+shadow = "9.3.2"
+paper-api = "1.21.11-R0.1-SNAPSHOT"
+velocity-api = "3.4.0-SNAPSHOT"
+guice = "7.0.0"
+acf = "0.5.1-SNAPSHOT"
+configurate = "4.2.0"
+gson = "2.13.2"
+mineskin = "3.2.1-SNAPSHOT"
+bstats = "3.2.1"
+
+[libraries]
+paper-api = { module = "io.papermc.paper:paper-api", version.ref = "paper-api" }
+velocity-api = { module = "com.velocitypowered:velocity-api", version.ref = "velocity-api" }
+guice = { module = "com.google.inject:guice", version.ref = "guice" }
+acf-paper = { module = "co.aikar:acf-paper", version.ref = "acf" }
+acf-velocity = { module = "co.aikar:acf-velocity", version.ref = "acf" }
+configurate-yaml = { module = "org.spongepowered:configurate-yaml", version.ref = "configurate" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+mineskin-client = { module = "org.mineskin:java-client", version.ref = "mineskin" }
+mineskin-client-jsoup = { module = "org.mineskin:java-client-jsoup", version.ref = "mineskin" }
+bstats-bukkit = { module = "org.bstats:bstats-bukkit", version.ref = "bstats" }
+bstats-velocity = { module = "org.bstats:bstats-velocity", version.ref = "bstats" }
+
+[bundles]
+mineskin = ["mineskin-client", "mineskin-client-jsoup"]
+
+[plugins]
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }

@@ -1,0 +1,21 @@
+motds:
+  full_motd:
+    image: full_motd
+    fallback_description:
+      - "<grey>A Minecraft Server"
+  part_motd:
+    description:
+      - "<image:part_motd>"
+      - "<grey>A Minecraft Server"
+    fallback_description:
+      - "<grey>A Minecraft Server"
+
+images:
+  full_motd:
+    path: full_motd.png
+    shadow_color: "#FFFFFFFF"
+  part_motd:
+    path: part_motd.png
+
+settings:
+  mineskin-key: ""

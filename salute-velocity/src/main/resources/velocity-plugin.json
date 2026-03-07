@@ -1,0 +1,7 @@
+{
+  "id": "salute",
+  "name": "Salute",
+  "version": "${version}",
+  "authors": ["viremox"],
+  "main": "codes.viremox.salute.velocity.SaluteVelocityPlugin"
+}
