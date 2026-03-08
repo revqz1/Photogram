@@ -3,6 +3,7 @@ package codes.viremox.salute;
 import codes.viremox.salute.config.ImageEntry;
 import codes.viremox.salute.config.MotdEntry;
 import codes.viremox.salute.display.MotdRenderer;
+import codes.viremox.salute.hook.MiniPlaceholderHook;
 import codes.viremox.salute.pipeline.HeadComponentFactory;
 import codes.viremox.salute.pipeline.ManagedImage;
 import codes.viremox.salute.pipeline.PipelineState;
@@ -35,6 +36,7 @@ public final class SaluteOrchestrator {
 
     private final Map<String, ManagedImage> registry = new ConcurrentHashMap<>();
     private volatile MotdRenderer motdRenderer;
+    private MiniPlaceholderHook miniPlaceholderHook;
 
     @Inject
     public SaluteOrchestrator(
@@ -55,6 +57,7 @@ public final class SaluteOrchestrator {
         Assets.extractDefaults(dataDirectory);
         configProvider.reload();
         processAllImages();
+        miniPlaceholderHook = MiniPlaceholderHook.attemptRegistration(this::images, logger);
     }
 
     public void reload() {
@@ -64,6 +67,7 @@ public final class SaluteOrchestrator {
     }
 
     public void shutdown() {
+        if (miniPlaceholderHook != null) miniPlaceholderHook.unregister();
         cancelAllInFlight();
         textureStore.persist();
     }

@@ -3,5 +3,11 @@
   "name": "Salute",
   "version": "${version}",
   "authors": ["viremox"],
-  "main": "codes.viremox.salute.velocity.SaluteVelocityPlugin"
+  "main": "codes.viremox.salute.velocity.SaluteVelocityPlugin",
+  "dependencies": [
+    {
+      "id": "miniplaceholders",
+      "optional": true
+    }
+  ]
 }

@@ -6,6 +6,7 @@ plugins {
 
 dependencies {
     compileOnly(libs.paper.api)
+    compileOnly(libs.miniplaceholders.api)
     implementation(libs.configurate.yaml)
     implementation(libs.guice)
     implementation(libs.gson)

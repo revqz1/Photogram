@@ -9,6 +9,7 @@ configurate = "4.2.0"
 gson = "2.13.2"
 mineskin = "3.2.1-SNAPSHOT"
 bstats = "3.2.1"
+miniplaceholders = "3.1.0"
 
 [libraries]
 paper-api = { module = "io.papermc.paper:paper-api", version.ref = "paper-api" }
@@ -22,6 +23,7 @@ mineskin-client = { module = "org.mineskin:java-client", version.ref = "mineskin
 mineskin-client-jsoup = { module = "org.mineskin:java-client-jsoup", version.ref = "mineskin" }
 bstats-bukkit = { module = "org.bstats:bstats-bukkit", version.ref = "bstats" }
 bstats-velocity = { module = "org.bstats:bstats-velocity", version.ref = "bstats" }
+miniplaceholders-api = { module = "io.github.miniplaceholders:miniplaceholders-api", version.ref = "miniplaceholders" }
 
 [bundles]
 mineskin = ["mineskin-client", "mineskin-client-jsoup"]
