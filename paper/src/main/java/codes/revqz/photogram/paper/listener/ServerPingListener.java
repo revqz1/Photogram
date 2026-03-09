@@ -17,6 +17,8 @@ public class ServerPingListener implements Listener {
 
     @EventHandler
     public void onPing(PaperServerListPingEvent event) {
-        platform.motd().ifPresent(event::motd);
+        // pass client protocol version so old clients get a plain-text fallback
+        int protocol = event.getProtocolVersion();
+        platform.motd(protocol).ifPresent(event::motd);
     }
 }

@@ -122,6 +122,10 @@ public final class PhotogramOrchestrator {
     }
 
     public Optional<Component> buildMotd() {
+        return buildMotd(-1);
+    }
+
+    public Optional<Component> buildMotd(int clientProtocol) {
         if (motdRenderer == null)
             return Optional.empty();
 
@@ -129,8 +133,12 @@ public final class PhotogramOrchestrator {
         if (motd == null)
             return Optional.empty();
 
+        int minProtocol = configProvider.settings().api().minProtocolVersion();
+        // clientProtocol -1 means unknown (legacy) - treat as unsupported
+        boolean clientSupported = clientProtocol >= minProtocol;
         boolean imagesReady = isImageReadyForMotd(motd);
-        Component rendered = motdRenderer.render(motd, imagesReady);
+
+        Component rendered = motdRenderer.render(motd, imagesReady, clientSupported);
 
         if (rendered.equals(Component.empty()))
             return Optional.empty();

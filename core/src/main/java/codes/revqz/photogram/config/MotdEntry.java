@@ -14,6 +14,10 @@ public class MotdEntry {
     @Setting("fallback_description")
     private List<String> fallbackLines = List.of();
 
+    // shown to clients below min-protocol-version
+    @Setting("version_fallback_description")
+    private List<String> versionFallbackLines = List.of();
+
     @Setting("image")
     private String imageRef = null;
 
@@ -23,6 +27,10 @@ public class MotdEntry {
 
     public List<String> fallbackLines() {
         return fallbackLines;
+    }
+
+    public List<String> versionFallbackLines() {
+        return versionFallbackLines;
     }
 
     public String imageRef() {
@@ -35,6 +43,10 @@ public class MotdEntry {
 
     public boolean hasFallback() {
         return fallbackLines != null && !fallbackLines.isEmpty();
+    }
+
+    public boolean hasVersionFallback() {
+        return versionFallbackLines != null && !versionFallbackLines.isEmpty();
     }
 
     public boolean referencesImage() {

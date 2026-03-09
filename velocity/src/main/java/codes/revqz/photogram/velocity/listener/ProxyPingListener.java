@@ -17,7 +17,9 @@ public class ProxyPingListener {
 
     @Subscribe
     public void onPing(ProxyPingEvent event) {
-        platform.motd().ifPresent(motd -> {
+        // pass client protocol version so old clients get a plain-text fallback
+        int protocol = event.getConnection().getProtocolVersion().getProtocol();
+        platform.motd(protocol).ifPresent(motd -> {
             ServerPing updated = event.getPing().asBuilder()
                     .description(motd)
                     .build();

@@ -48,8 +48,7 @@ public class PhotogramVelocityPlugin implements ServerPlatform {
 
         final Injector injector = Guice.createInjector(
                 new PhotogramCoreModule(dataDir, logger),
-                new PhotogramVelocityModule(this, proxy)
-        );
+                new PhotogramVelocityModule(this, proxy));
 
         orchestrator = injector.getInstance(PhotogramOrchestrator.class);
         orchestrator.start();
@@ -65,13 +64,23 @@ public class PhotogramVelocityPlugin implements ServerPlatform {
 
     @Subscribe
     public void onShutdown(ProxyShutdownEvent event) {
-        if (orchestrator != null) orchestrator.shutdown();
-        if (commandManager != null) commandManager.unregisterCommands();
+        if (orchestrator != null)
+            orchestrator.shutdown();
+        if (commandManager != null)
+            commandManager.unregisterCommands();
     }
 
     @Override
     public Optional<Component> motd() {
-        if (orchestrator == null) return Optional.empty();
+        if (orchestrator == null)
+            return Optional.empty();
         return orchestrator.buildMotd();
+    }
+
+    @Override
+    public Optional<Component> motd(int clientProtocol) {
+        if (orchestrator == null)
+            return Optional.empty();
+        return orchestrator.buildMotd(clientProtocol);
     }
 }

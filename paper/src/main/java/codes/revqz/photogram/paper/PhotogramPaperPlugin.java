@@ -28,8 +28,7 @@ public class PhotogramPaperPlugin extends JavaPlugin implements ServerPlatform {
 
         injector = Guice.createInjector(
                 new PhotogramCoreModule(getDataFolder().toPath(), getLogger()),
-                new PhotogramPaperModule(this)
-        );
+                new PhotogramPaperModule(this));
 
         orchestrator = injector.getInstance(PhotogramOrchestrator.class);
         orchestrator.start();
@@ -41,8 +40,10 @@ public class PhotogramPaperPlugin extends JavaPlugin implements ServerPlatform {
 
     @Override
     public void onDisable() {
-        if (orchestrator != null) orchestrator.shutdown();
-        if (commandManager != null) commandManager.unregisterCommands();
+        if (orchestrator != null)
+            orchestrator.shutdown();
+        if (commandManager != null)
+            commandManager.unregisterCommands();
     }
 
     private void setupCommands() {
@@ -55,7 +56,15 @@ public class PhotogramPaperPlugin extends JavaPlugin implements ServerPlatform {
 
     @Override
     public Optional<Component> motd() {
-        if (orchestrator == null) return Optional.empty();
+        if (orchestrator == null)
+            return Optional.empty();
         return orchestrator.buildMotd();
+    }
+
+    @Override
+    public Optional<Component> motd(int clientProtocol) {
+        if (orchestrator == null)
+            return Optional.empty();
+        return orchestrator.buildMotd(clientProtocol);
     }
 }

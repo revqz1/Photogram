@@ -37,7 +37,25 @@ public final class MotdRenderer {
     }
 
     public Component render(MotdEntry motd, boolean imagesReady) {
-        if (motd == null) return Component.empty();
+        return render(motd, imagesReady, true);
+    }
+
+    // clientSupported = false when the connecting client is below
+    // min-protocol-version
+    public Component render(MotdEntry motd, boolean imagesReady, boolean clientSupported) {
+        if (motd == null)
+            return Component.empty();
+
+        // old client: serve version fallback, then generic fallback, then nothing
+        if (!clientSupported) {
+            if (motd.hasVersionFallback()) {
+                return miniMessage.deserialize(String.join("\n", motd.versionFallbackLines()));
+            }
+            if (motd.hasFallback()) {
+                return miniMessage.deserialize(String.join("\n", motd.fallbackLines()));
+            }
+            return Component.empty();
+        }
 
         if (motd.hasExplicitDescription()) {
             return miniMessage.deserialize(String.join("\n", motd.lines()));
