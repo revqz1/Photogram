@@ -17,7 +17,7 @@ Make sure the images are in multiple of 8s (height mainly) or else it wont look 
 ## Requirements
 
 - **Java 21** or newer
-- A [MineSkin](https://mineskin.org) API key
+- A [MineSkin](https://mineskin.org) API key (Not required but will improve loading times).
 
 ## License
 
